@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>editar</title>
+</head>
+<body>
+	<form action="/actualizar/{{ contact.0 }}" method="POST">
+	<input type="text" name="nombre_completo" value="{{contact.1}}">
+	<input type="text" name="telefono" value="{{contact.2}}">
+	<input type="text" name="email" value="{{contact.3}}">
+	<button type="submit">Actualizar</button>
+     </form>
+</body>
+</html>

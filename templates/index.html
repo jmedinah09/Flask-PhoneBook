@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Agenda de Contactos</title>
+</head>
+<body>
+	<form action="/" method="GET">
+		<button type="submit">Home</button>  <br /> <br /> <br />
+	</form>
+	<div>
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				{% for message in messages %}
+	   				<p>{{ message }}</p>
+	   			{% endfor %}
+	   		{% endif %}
+	   {% endwith %}
+		<form action="/agregar_contacto" method="POST">
+			<input type="text" name="nombre_completo" placeholder="Nombre Completo">
+			<input type="text" name="telefono" placeholder="Telefono">
+			<input type="text" name="email" placeholder="E-mail">
+			<button type="submit">Agregar</button> <br /> <br /> <br />
+		</form>
+	</div>
+	<div>
+	<form action="/listar_por" method="POST">
+		<span>Listar por:</span>
+			<select name="dato">
+				<option value="nombre_completo">Nombre Completo</option>	
+				<option value="telefono">Telefono</option>	
+				<option value="email">E-mail</option>	  
+			</select>
+			<input type="text" name="buscar_por">
+			<button type="submit">Ver</button>
+	</form>
+	</div>
+	<form action="/listar" method="POST">
+		<button type="submit">Listar Todos</button> <br /> <br /> <br />
+	</form>
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<td><b>Nombre Completo</b></td>
+					<td><b>Telefono</b></td>
+					<td><b>E-mail</b></td>
+					<td><b>Opciones</b></td>
+				</tr>
+			</thead>
+		<tbody>
+			{% for contact in contacts %}
+			<tr>
+				<td>{{ contact.1 }}</td>
+				<td>{{ contact.2 }}</td>
+				<td>{{ contact.3 }}</td>
+				<td>
+					<a href="/editar/{{contact.0}}">EDITAR</a>
+					<a href="/borrar_contacto/{{ contact.0 }}">BORRAR</a>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+</body>
+</html>

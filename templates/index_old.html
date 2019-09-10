@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Agenda</title>
+</head>
+<body>
+	{% with messages = get_flashed_messages() %}
+	{% if messages %}
+	{% for message in messages %}
+	   <p>{{ message }}</p>
+	   {% endfor %}
+	   {% endif %}
+	   {% endwith %}
+	<form action="/agregar_contacto" method="POST">
+		<input type="text" name="nombre_completo" placeholder="Nombre Completo">
+		<input type="text" name="telefono" placeholder="Telefono">
+		<input type="text" name="email" placeholder="email">
+		<button type="submit">Agregar</button> <br /> <br /> <br />
+	</form>
+	<form action="/listar" method="POST">
+		<button type="submit">Listar Todos</button>
+	</form>
+</body>
+</html>
