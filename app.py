@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from sqlt3_module import sqlite_CRUD
 
 app = Flask(__name__)
-app.secret_key = 'mysecretkey'
+app.secret_key = '123456'
 
 @app.route('/', methods=['GET'])
 def Index():
