@@ -1,6 +1,6 @@
 # Flask-PhoneBook
 
-An example of CRUD tasks in a database connected with python. Also, this is an example of using flask micro-framework (...-frame-work) to ilustrate as an example of web development.
+An example of CRUD tasks in a database connected with python. Also, this is an example of using flask micro-framework (...-frame-work) to ilustrate web development process.
 
 This is not finish yet as it has a lot a writing errors like mixing both spanish and english in the name of the functions and routes or maybe variables set but not used.
 
