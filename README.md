@@ -6,7 +6,7 @@ This is not finish yet as it has a lot a writing errors like mixing both spanish
 
 To run it, all that you have to do is to clone the repo to your local directory and run python app.py in your terminal or cmd prompt and visit localhost:5000 in your browser.
 
-This app can store in a sqlt3 database from users input, list all the sotred items in the database by name, phone or e-mail and also update and delete rows (contacts from the databesa).
+This app can store in a sqlt3 database from users input, list all the stored items in the database by name, phone or e-mail and also update and delete rows (contacts from the database).
 
 This app runs with python 3. It has been written in python 3.
 
