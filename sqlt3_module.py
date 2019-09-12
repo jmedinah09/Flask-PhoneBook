@@ -5,6 +5,10 @@ class sqlite_CRUD:
 		self.conn = conn = sqlite3.connect('agenda_telefonica.db')
 		self.c = conn.cursor()
 
+	def close(self):
+		self.conn.commit()
+		self.conn.close()
+
 	def crear_tabla(self):
 		sql = ''' 
 			CREATE TABLE agenda (
@@ -39,8 +43,6 @@ class sqlite_CRUD:
 			INSERT INTO agenda (fullname, phone, email) 
 			VALUES (?,?,?)""", 
 			(nombre_completo, telefono, email))
-		self.conn.commit()
-		self.conn.close()
 
 	def editar_contactos(self, id):
 		self.c.execute("""SELECT * FROM agenda WHERE id = ?""",
@@ -55,13 +57,7 @@ class sqlite_CRUD:
 			email   = ?
 		WHERE id	= ?
 		""", (nombre_completo, telefono, email, id))
-		self.conn.commit()
-		self.conn.close()
 		
 	def borrar_contactos(self, id):
 		self.c.execute('DELETE FROM agenda WHERE id = ?', (id, ))
-		self.conn.commit()
-		self.conn.close()
-
-
-	
+		

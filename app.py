@@ -1,20 +1,22 @@
 
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, flash
 from sqlt3_module import sqlite_CRUD
 
 app = Flask(__name__)
-app.secret_key = '123456'
+app.secret_key = 'hOo0laMundo'
 
 @app.route('/', methods=['GET'])
 def Index():
 	db = sqlite_CRUD()
 	data = db.listar_contactos()
+	db.close()
 	return render_template('index.html', contacts = data)
 
 @app.route('/listar', methods=['POST'])
 def show_contacts():
 	db = sqlite_CRUD()
 	data = db.listar_contactos()
+	db.close()
 	return render_template('index.html', contacts = data)
 
 @app.route('/listar_por', methods=['GET', 'POST'])
@@ -29,6 +31,7 @@ def listar_por():
 			data = db.listar_contactos_por_tel(buscar_por)
 		elif select == 'email':
 			data = db.listar_contactos_por_email(buscar_por)
+		db.close()
 		return render_template('index.html', contacts = data)
 
 @app.route('/agregar_contacto', methods=['POST'])
@@ -39,8 +42,8 @@ def agregar_contacto():
 		email = request.form['email']
 		db = sqlite_CRUD()
 		db.insertar_contactos(nombre_completo, telefono, email)
-		db = sqlite_CRUD()
 		data = db.listar_contactos()
+		db.close()
 		flash('Contacto Agregado Satisfactoriamente!')
 		return render_template('index.html', contacts = data)
 
@@ -48,6 +51,7 @@ def agregar_contacto():
 def editar_contact(id):
 	db = sqlite_CRUD()
 	data = db.editar_contactos(id)
+	db.close()
 	return render_template('editar_contacto.html', contact = data[0])
 
 @app.route('/actualizar/<id>', methods = ['POST'])
@@ -58,8 +62,8 @@ def update_contact(id):
 		email = request.form['email']
 	db = sqlite_CRUD()
 	db.actualizar_contactos(nombre_completo, telefono, email, id)
-	db = sqlite_CRUD()
 	data = db.listar_contactos()
+	db.close()
 	flash('Contacto Actualizado Satisfacoriamente')
 	return render_template('index.html', contacts = data)
 
@@ -67,8 +71,8 @@ def update_contact(id):
 def borrar_contacto_contact(id):
 	db = sqlite_CRUD()
 	db.borrar_contactos(id)
-	db = sqlite_CRUD()
 	data = db.listar_contactos()
+	db.close()
 	flash('Contacto Removido Satisfactoriamente')
 	return render_template('index.html', contacts = data)
 	
