@@ -1,5 +1,5 @@
 _-IgCfZkR8wME.webm
 __pycache__/
-.gitignore.save
+*.save
 *.pyc
 
